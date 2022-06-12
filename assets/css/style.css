@@ -222,7 +222,8 @@ h6 {
 #hero {
   width: 100%;
   height: 100vh;
-  background: url("../img/IMG_20200226_161851.jpg") top center;
+  /* background: url("../img/IMG_20200226_161851.jpg") top center; */
+  background-color: #4dd2ff;
   background-size: cover;
 }
 
