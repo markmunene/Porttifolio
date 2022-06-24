@@ -422,6 +422,8 @@ section {
   color: #050d18;
 }
 
+
+
 .skills .progress .skill .val {
   float: right;
   font-style: normal;
@@ -532,6 +534,13 @@ section {
 .portfolio #portfolio-flters li:hover,
 .portfolio #portfolio-flters li.filter-active {
   color: #149ddd;
+}
+
+.portfolio .portifolioImg {
+  width: 300px !important;
+  height: 200px !important;
+  object-fit: contain;
+
 }
 
 .portfolio #portfolio-flters li:last-child {
@@ -996,7 +1005,15 @@ section {
 
 .portfolio-details .portfolio-details-carousel {
   position: relative;
+
   z-index: 1;
+}
+
+.BillingCaruusel {
+  width: 300px;
+  height: 100%;
+  display: grid;
+  place-items: center;
 }
 
 .portfolio-details .portfolio-details-carousel .owl-nav,
