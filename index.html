@@ -572,7 +572,7 @@
           </div>
 
           <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+            <form  method="post" role="form" class="php-email-form">
               <div class="form-row">
                 <div class="form-group col-md-6">
                   <label for="name">Your Name</label>
@@ -592,15 +592,18 @@
               </div>
               <div class="form-group">
                 <label for="name">Message</label>
-                <textarea class="form-control" name="message" rows="10" data-rule="required" data-msg="Please write something for us"></textarea>
+                <textarea class="form-control" id="message" 
+                name="message" rows="10" data-rule="required"
+                value =""
+                 data-msg="Please write something for us"></textarea>
                 <div class="validate"></div>
               </div>
               <div class="mb-3">
                 <div class="loading">Loading</div>
                 <div class="error-message"></div>
-                <div class="sent-message">Your message has been sent. Thank you!</div>
+                <div id="message_sent" class="sent-message">Your message has been sent. Thank you!</div>
               </div>
-              <div class="text-center"><button type="submit">Send Message</button></div>
+              <div class="text-center"><button type="submit" onclick="sendEmail()">Send Message</button></div>
             </form>
           </div>
 
@@ -630,6 +633,43 @@
   <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
 
   <!-- Vendor JS Files -->
+  <script>
+    let name = document.getElementById('name');
+    let email = document.getElementById('email');
+    let subject = document.getElementById('subject');
+    let message = document.getElementById('message');
+    let message_sent = document.getElementById('message_sent');
+// 8adae84823590510837d48706d2398f8
+// username : markmunene72@gmail.com
+// pasword : 348C03BACB6A078C1B3CD7C4642B0B73FB85
+// smtp port : 2525
+   function sendEmail() { 
+    if (name.value != '' && email.value != '' && subject.value != '' && message.value != '') {
+      
+      Email.send({
+      // secureToken: "8adae84823590510837d48706d2398f8",
+       Host : "smtp.elasticemail.com", 
+     Username : "markmunene72@gmail.com",
+       Password : "348C03BACB6A078C1B3CD7C4642B0B73FB85",
+         To : 'munenemark72@gmail.com', 
+         From : 'markmunene72@gmail.com', 
+         Subject : subject.value, 
+      Body : `<html><h2>Header</h2><strong>${message.value}</strong><br></br>
+      ${name.value}<br></br>
+      ${email.value}<br></br>
+      </html> ` }).then( message => {
+        message_sent.style.display = 'block';
+        document.getElementById('message').value = '';
+        name.value = '';
+        email.value = '';
+        subject.value = '';
+        message.value = "ok";
+      }).catch(message => {
+        alert(message);
+      });
+       }
+    }
+  </script>
   <script src="assets/vendor/jquery/jquery.min.js"></script>
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
@@ -641,6 +681,7 @@
   <script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
   <script src="assets/vendor/typed.js/typed.min.js"></script>
   <script src="assets/vendor/aos/aos.js"></script>
+  <script src="https://smtpjs.com/v3/smtp.js"> </script>
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
